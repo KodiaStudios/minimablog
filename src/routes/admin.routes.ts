@@ -7,13 +7,16 @@ const router = express.Router();
 router.use((req: any, res: any, next: any) => {
     if (!req.user) {
         return res.redirect("/auth/github");
-        // return res.render("pages/404");
     }
+
+    if (!req.user.blogger) {
+        return res.redirect("/posts");
+    }
+
     return next();
 });
 
 router.get("/", async (req: any, res: any) => {
-    console.log(req.user);
     let posts: any = [];
     try {
         posts = await Post.find({});
