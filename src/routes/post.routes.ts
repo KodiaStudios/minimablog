@@ -20,6 +20,7 @@ router.get("/:stub", async (req: any, res: any) => {
     let post: any = null;
     try {
         post = await Post.findOne({_id: stub}).populate("author");
+        post.stub = post.title.replace(" ", "-").replace("'", "") + "." + post._id;
     } catch (err) {
         console.log(err);
         post = {};
