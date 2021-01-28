@@ -14,7 +14,7 @@ import Post from "../models/Post";
 router.get("/", async (req: any, res: any) => {
     let posts: any = null;
     try {
-        posts = await Post.find().populate("author");
+        posts = await Post.find().populate("author").sort("-date");
         for (const post of posts) {
             post.stub = post.title.replace(" ", "-").replace("'", "") + "-" + post._id;
             post.body = post.body.replaceAll("\n", "\\n").replaceAll("\r", "\\r");
