@@ -38,6 +38,7 @@
     "http-errors": "^1.8.0",
     "mongoose": "^5.11.13",
     "morgan": "^1.10.0",
+    "node-input-validator": "^4.3.2",
     "passport": "^0.4.1",
     "passport-github": "^1.1.0",
     "pug": "^3.0.0",
