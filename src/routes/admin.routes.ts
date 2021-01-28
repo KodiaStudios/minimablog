@@ -7,7 +7,7 @@ const router = express.Router();
 router.use((req: any, res: any, next: any) => {
     if (!req.user) {
         return res.redirect("/auth/github");
-        //return res.render("pages/404");
+        // return res.render("pages/404");
     }
     return next();
 });
