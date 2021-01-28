@@ -60,7 +60,7 @@ router.post("/edit", async (req: any, res: any) => {
             post.author = req.user._id;
         }
         post.title = req.body.title;
-        post.body = req.body.body;
+        post.body = req.body.body.replace("\n", "\\n");
         post.thumbnail = {url: req.body.thumbnail_url, alt: req.body.thumbnail_alt};
         await post.save();
     } catch (err) {

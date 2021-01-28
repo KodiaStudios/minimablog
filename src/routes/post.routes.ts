@@ -8,6 +8,7 @@ router.get("/", async (req: any, res: any) => {
         posts = await Post.find().populate("author");
         for (const post of posts) {
             post.stub = post.title.replace(" ", "-").replace("'", "") + "-" + post._id;
+            post.body = post.body.replace("\n", "\\n");
         }
     } catch (err) {
         console.log(err);
@@ -28,6 +29,7 @@ router.get("/:stub", async (req: any, res: any) => {
     try {
         post = await Post.findOne({_id: stub}).populate("author");
         post.stub = post.title.replace(" ", "-").replace("'", "") + "-" + post._id;
+        post.body = post.body.replace("\n", "\\n");
     } catch (err) {
         console.log(err);
         post = {};

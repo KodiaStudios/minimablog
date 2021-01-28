@@ -10,6 +10,6 @@ const router = Router();
 router.use("/", indexRouter);
 router.use("/posts", postRouter);
 router.use("/auth", passportRouter);
-router.use("/admin", passportRouter);
+router.use("/admin", adminRouter);
 
 export default router;
