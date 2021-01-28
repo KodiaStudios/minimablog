@@ -5,7 +5,7 @@ import Post from "../models/Post";
 router.get("/", async (req: any, res: any) => {
     let posts: any = null;
     try {
-        posts = await Post.find().populate("auth");
+        posts = await Post.find().populate("author");
     } catch (err) {
         console.log(err);
         posts = [];
