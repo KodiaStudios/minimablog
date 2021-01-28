@@ -17,6 +17,10 @@ router.get("/", async (req: any, res: any) => {
     let posts: any = [];
     try {
         posts = await Post.find({});
+        for (const post of posts) {
+            post.stub = post.title.replace(" ", "-").replace("'", "") + "-" + post._id;
+            post.body = post.body.replaceAll("\n", "\\n").replaceAll("\r", "\\r");
+        }
     } catch (err) {
         console.log(err);
         posts = [];
@@ -36,6 +40,16 @@ router.get("/edit", async (req: any, res: any) => {
         found = false;
     }
     return res.render("pages/admin/edit", {valid: found, user: req.user, post});
+});
+
+router.get("/delete", async (req: any, res: any) => {
+    try {
+        if (req.query.id)
+            await Post.deleteOne({_id: req.query.id});
+    } catch (err) {
+        console.log(err);
+    }
+    return res.redirect("/admin");
 });
 
 router.post("/edit", async (req: any, res: any) => {

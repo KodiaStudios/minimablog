@@ -1,0 +1,29 @@
+extends ../../layout.pug
+block content
+    script.
+        const convertMarkdown = (postId, body) => {
+            const converter = new showdown.Converter()
+            const html = converter.makeHtml(body)
+            const DOMHtml = document.createElement("div")
+            DOMHtml.innerHTML=html
+            document.getElementById(postId+"-post").innerHTML=DOMHtml.innerText.slice(0,100)+"..."
+        }
+
+    .uk-container
+        h1.uk-heading-small Admin Panel
+        a(href="/admin/edit").uk-button.uk-button-primary Create New Post
+        table.uk-table.uk-table-middle.uk-table-divider
+            thead
+                tr
+                    th Blog Title
+                    th Blog Body
+            tbody
+                each post in posts
+                    tr
+                        td= post.title
+                        td(id=post._id+"-post") Post Description...
+                        td.uk-width-small
+                            a(href="/admin/edit?id="+post._id).uk-button.uk-button-primary Edit
+                        td.uk-width-small
+                            a(href="/admin/delete?id="+post._id).uk-button.uk-button-danger Delete
+                    script convertMarkdown("#{post._id}", "#{post.body}")
