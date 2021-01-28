@@ -19,8 +19,13 @@ block content
                                 a
                                     span#timeSince
     script.
+        var decodeHTML = function (html) {
+            var txt = document.createElement('textarea');
+            txt.innerHTML = html;
+            return txt.value;
+        };
         const converter = new showdown.Converter()
-        const text = "#{post.body}"
+        const text = decodeHTML("#{post.body}")
         const html = converter.makeHtml(text)
         document.getElementById("postBody").innerHTML=html
 
