@@ -10,21 +10,25 @@ block content
             .uk-comment-header
                 div(uk-grid).uk-grid-medium.uk-flex-middle
                     .uk-width-auto
-                        img(src=post.authorImg width="80" height="80").uk-comment-avatar.uk-border-circle
+                        img(src="https://github.com/"+post.author.githubUsername+".png" width="80" height="80").uk-border-circle.uk-comment-avatar
                     .uk-width-expand
                         h4.uk-comment-title.uk-margin-remove
-                            a(href="").uk-link-reset= post.author.name
+                            a(href="").uk-link-reset= post.author.displayName
                         ul.uk-comment-meta.uk-subnav.uk-subnav-divider.uk-margin-remove-top
                             li
                                 a
                                     span#timeSince
-                                    span days ago
     script.
         const converter = new showdown.Converter()
         const text = "#{post.body}"
         const html = converter.makeHtml(text)
         document.getElementById("postBody").innerHTML=html
 
-        const timeDiff = new Date().getTime() - #{post.date}.getTime()
-        const daysSince = timeDiff / (1000*3600*24)
+        const timeDiff = new Date().getTime() - new Date("#{post.date}").getTime()
+        let daysSince = Math.floor(timeDiff / (1000*3600*24))
+        if(daysSince == 0){
+            daysSince = "Today"
+        } else {
+            daysSince = daysSince + " days ago"
+        }
         document.getElementById("timeSince").innerHTML=daysSince
