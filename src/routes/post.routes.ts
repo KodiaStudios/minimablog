@@ -16,6 +16,10 @@ router.get("/", async (req: any, res: any) => {
     return res.render("pages/posts", {posts});
 });
 
+router.get("/new", async (req: any, res: any) => {
+    return res.render("pages/newpost");
+});
+
 router.get("/:stub", async (req: any, res: any) => {
     let valid = true;
     const stubs = req.params.stub.split("-");

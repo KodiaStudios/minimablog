@@ -1,3 +1,51 @@
 extends ../layout.pug
 block content
-    
+    .uk-height-1-1
+        div(class="uk-child-width-expand@s uk-height-1-1 uk-padding" uk-grid)
+            div.uk-height-1-1
+                h3.uk-card-title.uk-text-center Editor
+                form(method="POST").uk-height-1-1
+                    button.uk-button.uk-button-primary Save
+                    .uk-margin
+                        input(type="text" name="title" placeholder="Title" id="title-editor").uk-input
+                    .uk-margin
+                        input(type="text" name="thumbnail_url" placeholder="Image url" id="image-editor").uk-input
+                    .uk-margin
+                        input(type="text" name="thumbnail_alt" placeholder="Image alt").uk-input
+                    textarea(id="blog-editor" name="body" placeholder="Blog Content in markdown").uk-textarea.uk-height-1-1
+            div.uk-height-1-1
+                h3.uk-card-title.uk-text-center Preview
+                .uk-container
+                    h1(id="title-prev").uk-heading-small.uk-text-center
+                    hr.uk-divider-icon
+                    .uk-cover-container.uk-height-large.uk-margin-bottom
+                        img(src="" id="thumbnail-prev" alt="add image" uk-cover)
+                    div#previewPost
+
+    script.
+        let lastKeyPress = new Date()
+        let lastUpdate = new Date()
+        let editor = document.getElementById("blog-editor")
+
+        const updatePreview = () => {
+            let title = document.getElementById("title-editor").value
+            let thumbnail = document.getElementById("image-editor").value
+            const converter = new showdown.Converter()
+            const text = editor.value
+            const html = converter.makeHtml(text)
+            document.getElementById("previewPost").innerHTML= html
+            document.getElementById("title-prev").innerHTML = title
+            document.getElementById("thumbnail-prev").src = thumbnail
+            lastUpdate = new Date()
+        }
+
+        document.addEventListener('keydown', () => {
+            lastKeyPress = new Date()
+        });
+
+        setInterval((e) => {
+            if (lastUpdate >= lastKeyPress) return null
+            updatePreview()
+        }, 1000)
+
+        updatePreview()
