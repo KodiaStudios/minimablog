@@ -5,6 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
+    "postbuild": "cp -r src/views dist/views",
     "prestart": "npm run build",
     "start": "node .",
     "build": "tsc",
