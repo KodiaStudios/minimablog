@@ -1,0 +1,40 @@
+{
+  "name": "minimablog",
+  "version": "1.0.0",
+  "description": "Minimalistic and simple blog CMS.",
+  "main": "dist/index.js",
+  "scripts": {
+    "prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
+    "prestart": "npm run build",
+    "start": "node .",
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "nodemon --exec ts-node -- ./src/index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KodiaStudios/minimablog.git"
+  },
+  "author": "Kodia Studios",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/KodiaStudios/minimablog/issues"
+  },
+  "homepage": "https://github.com/KodiaStudios/minimablog#readme",
+  "dependencies": {
+    "@types/cors": "^2.8.9",
+    "@types/express": "^4.17.11",
+    "@types/http-errors": "^1.8.0",
+    "@types/mongoose": "^5.10.3",
+    "@types/morgan": "^1.9.2",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "http-errors": "^1.8.0",
+    "mongoose": "^5.11.13",
+    "morgan": "^1.10.0",
+    "pug": "^3.0.0",
+    "ts-node": "^9.1.1",
+    "tslint": "^6.1.3",
+    "typescript": "^4.1.3"
+  }
+}
