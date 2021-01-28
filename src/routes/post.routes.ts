@@ -6,6 +6,9 @@ router.get("/", async (req: any, res: any) => {
     let posts: any = null;
     try {
         posts = await Post.find().populate("author");
+        for (const post of posts) {
+            post.stub = post.title.replace(" ", "-").replace("'", "") + "." + post._id;
+        }
     } catch (err) {
         console.log(err);
         posts = [];
