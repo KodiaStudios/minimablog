@@ -23,11 +23,7 @@ router.get("/", async (req: any, res: any) => {
         console.log(err);
         posts = [];
     }
-    return res.render("pages/posts", {posts});
-});
-
-router.get("/new", async (req: any, res: any) => {
-    return res.render("pages/newpost");
+    return res.render("pages/posts", {posts, user: req.user});
 });
 
 router.get("/:stub", async (req: any, res: any) => {
@@ -44,7 +40,7 @@ router.get("/:stub", async (req: any, res: any) => {
         post = {};
         valid = false;
     }
-    return res.render("pages/post", {valid, post});
+    return res.render("pages/post", {valid, post, user: req.user});
 });
 
 export default router;
