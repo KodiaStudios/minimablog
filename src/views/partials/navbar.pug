@@ -10,9 +10,18 @@
                             .uk-navbar-dropdown
                                 ul.uk-nav.uk-navbar-dropdown-nav
                                     li
-                                        a(href="#") Blog
+                                        a(href="/posts") Blog
                                     li.uk-nav-divider
-                                    li
-                                        a(href="/auth/github").uk-button.uk-button-default.uk-button-small Login with GitHub
+                                    if user === undefined
+                                        li
+                                            a(href="/auth/github").uk-button.uk-button-default.uk-button-small Login with GitHub
+                                    else if user.blogger === true
+                                        li
+                                            a(href="/admin").uk-button.uk-button-default.uk-button-small Admin
+                                        li
+                                            a(href="/logout").uk-button.uk-button-default.uk-button-small.uk-margin-top Logout
+                                    else
+                                        li
+                                            a(href="/logout").uk-button.uk-button-default.uk-button-small.uk-margin-top Logout
 
     .uk-navbar-dropbar
