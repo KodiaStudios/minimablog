@@ -1,4 +1,13 @@
 import express from "express";
+declare global {
+    interface String {
+        replaceAll(serach: string, replace: string): string;
+    }
+}
+
+String.prototype.replaceAll = function(search: string, replace: string) {
+    return this.split(search).join(replace);
+};
 
 const router = express.Router();
 import Post from "../models/Post";
