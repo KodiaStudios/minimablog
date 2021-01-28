@@ -1,9 +1,0 @@
-extends ../layout.pug
-block content
-    each post in data.posts
-        .uk-card.uk-card-default
-            .uk-card-media-top
-                img(src=post.thumbnail alt=post.thumbnail-alt)
-            .uk-card-body
-                h3.uk-card-title post.heading
-                     p post.description

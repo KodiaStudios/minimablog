@@ -1,0 +1,30 @@
+extends ../layout.pug
+block content
+    .container
+        h1.uk-heading-small.uk-text-center= post.title
+        hr.uk-divider-icon
+        .uk-cover-container.uk-height-large.uk-margin-bottom
+            img(src=post.thumbnail.url alt=post.thumbnail.alt uk-cover)
+        div#postBody
+        article.uk-comment
+            .uk-comment-header
+                div(uk-grid).uk-grid-medium.uk-flex-middle
+                    .uk-width-auto
+                        img(src=post.authorImg width="80" height="80").uk-comment-avatar.uk-border-circle
+                    .uk-width-expand
+                        h4.uk-comment-title.uk-margin-remove
+                            a(href="").uk-link-reset= post.author.name
+                        ul.uk-comment-meta.uk-subnav.uk-subnav-divider.uk-margin-remove-top
+                            li
+                                a
+                                    span#timeSince
+                                    span days ago
+    script.
+        const converter = new showdown.Converter()
+        const text = "#{post.body}"
+        const html = converter.makeHtml(text)
+        document.getElementById("postBody").innerHTML=html
+
+        const timeDiff = new Date().getTime() - #{post.date}.getTime()
+        const daysSince = timeDiff / (1000*3600*24)
+        document.getElementById("timeSince").innerHTML=daysSince
