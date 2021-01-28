@@ -28,6 +28,6 @@ block content
                                 .uk-width-auto
                                     img(src="https://github.com/"+post.author.githubUsername+".png" width="40" height="40").uk-border-circle
                                 .uk-width-expand
-                                    h4.uk-margin-remove-bottom= post.author.displayName
+                                    h4.uk-margin-remove-bottom= post.author.displayName ? post.author.displayName : post.author.githubUsername
             script convertMarkdown("#{post._id}", "#{post.body}")
 

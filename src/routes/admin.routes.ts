@@ -6,7 +6,8 @@ const router = express.Router();
 
 router.use((req: any, res: any, next: any) => {
     if (!req.user) {
-        return res.render("pages/404");
+        return res.redirect("/auth/github");
+        //return res.render("pages/404");
     }
     return next();
 });
@@ -24,7 +25,7 @@ router.get("/", async (req: any, res: any) => {
 });
 
 router.get("/edit", async (req: any, res: any) => {
-    found = false;
+    let found = false;
     let post: any = null;
     try {
         if (req.query.id)
@@ -60,7 +61,7 @@ router.post("/edit", async (req: any, res: any) => {
             post.author = req.user._id;
         }
         post.title = req.body.title;
-        post.body = req.body.body.replace("\n", "\\n");
+        post.body = req.body.body;
         post.thumbnail = {url: req.body.thumbnail_url, alt: req.body.thumbnail_alt};
         await post.save();
     } catch (err) {

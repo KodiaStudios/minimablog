@@ -13,7 +13,7 @@ block content
                         img(src="https://github.com/"+post.author.githubUsername+".png" width="80" height="80").uk-border-circle.uk-comment-avatar
                     .uk-width-expand
                         h4.uk-comment-title.uk-margin-remove
-                            a(href="").uk-link-reset= post.author.displayName
+                            a(href="").uk-link-reset= post.author.displayName ? post.author.displayName : post.author.githubUsername
                         ul.uk-comment-meta.uk-subnav.uk-subnav-divider.uk-margin-remove-top
                             li
                                 a
