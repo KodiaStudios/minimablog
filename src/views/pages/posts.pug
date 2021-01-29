@@ -11,23 +11,24 @@ block content
 
     .uk-container
         h1.uk-heading-medium Blog
-        each post in posts
-            div(uk-grid class="uk-card uk-card-default uk-child-width-1-2@s uk-grid-collapse uk-margin")
-                .uk-card-media-left.uk-cover-container
-                    img(src=post.thumbnail.url alt=post.thumbnail.alt uk-cover)
-                    canvas(width="600", height="300")
-                div
-                    .uk-card-body.uk-flex.uk-flex-column.uk-flex-between.uk-height-1-1
-                        div
-                            h3.uk-card-title= post.title
-                            p(id=post._id+"-post")
-                            a(href="posts/"+post.stub).uk-button.uk-button-text Read More
+        .uk-flex.uk-flex-column-reverse
+            each post in posts
+                div(uk-grid class="uk-card uk-card-default uk-child-width-1-2@s uk-grid-collapse uk-margin")
+                    .uk-card-media-left.uk-cover-container
+                        img(src=post.thumbnail.url alt=post.thumbnail.alt uk-cover)
+                        canvas(width="600", height="300")
+                    div
+                        .uk-card-body.uk-flex.uk-flex-column.uk-flex-between.uk-height-1-1
+                            div
+                                h3.uk-card-title= post.title
+                                p(id=post._id+"-post")
+                                a(href="posts/"+post.stub).uk-button.uk-button-text Read More
 
-                        div.uk-margin-top
-                            div(uk-grid).uk-grid-small.uk-flex-middle
-                                .uk-width-auto
-                                    img(src="https://github.com/"+post.author.githubUsername+".png" width="40" height="40").uk-border-circle
-                                .uk-width-expand
-                                    h4.uk-margin-remove-bottom= post.author.displayName ? post.author.displayName : post.author.githubUsername
-            script convertMarkdown("#{post._id}", "#{post.body}")
+                            div.uk-margin-top
+                                div(uk-grid).uk-grid-small.uk-flex-middle
+                                    .uk-width-auto
+                                        img(src="https://github.com/"+post.author.githubUsername+".png" width="40" height="40").uk-border-circle
+                                    .uk-width-expand
+                                        h4.uk-margin-remove-bottom= post.author.displayName ? post.author.displayName : post.author.githubUsername
+                script convertMarkdown("#{post._id}", "#{post.body}")
 
