@@ -19,7 +19,7 @@ router.use((req: any, res: any, next: any) => {
 router.get("/", async (req: any, res: any) => {
     let posts: any = [];
     try {
-        posts = await Post.find({});
+        posts = await Post.find({}).sort("-date");
         for (const post of posts) {
             post.stub = post.title.replace(" ", "-").replace("'", "") + "-" + post._id;
             post.body = post.body.replaceAll("\n", "\\n").replaceAll("\r", "\\r");
