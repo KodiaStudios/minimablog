@@ -22,6 +22,9 @@ html(lang="en")
         script(src="https://cdn.jsdelivr.net/npm/uikit@3.6.14/dist/js/uikit.min.js")
         script(src="https://cdn.jsdelivr.net/npm/uikit@3.6.14/dist/js/uikit-icons.min.js")
         script(src="https://cdn.jsdelivr.net/npm/showdown@1.9.1/dist/showdown.min.js")
+        link(href="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/themes/prism-tomorrow.css" rel="stylesheet")
     body
         include partials/navbar.pug
         block content
+        script(src="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/components/prism-core.min.js")
+        script(src="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/plugins/autoloader/prism-autoloader.min.js")
