@@ -37,6 +37,7 @@ block content
             document.getElementById("title-prev").innerHTML = title
             document.getElementById("thumbnail-prev").src = thumbnail
             lastUpdate = new Date()
+            Prism.highlightAll();
         }
 
         document.addEventListener('keydown', () => {
